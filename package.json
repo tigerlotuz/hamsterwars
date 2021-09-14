@@ -1,0 +1,24 @@
+{
+  "name": "hamsterwars",
+  "version": "1.0.0",
+  "description": "Hamster Wars - assignment",
+  "main": "index.js",
+  "scripts": {
+    "test-frontend": "npx http-server ./evaluate/"
+  },
+  "keywords": [
+    "Firestore",
+    "Firebase",
+    "Node",
+    "Express",
+    "REST",
+    "API"
+  ],
+  "author": "Sara Öst",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "firebase": "^9.0.2",
+    "firebase-admin": "^9.11.1"
+  }
+}
