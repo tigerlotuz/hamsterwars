@@ -4,9 +4,9 @@ const db = connect()
 
 const HAMSTERS = 'hamsters'
 
-getAllHamsters();
+getRandomHamster();
 
-async function getAllHamsters() {
+async function getRandomHamster() {
 	const hamstersRef = db.collection(HAMSTERS)
 	const hamstersSnapshot = await hamstersRef.get()
 
@@ -22,8 +22,8 @@ async function getAllHamsters() {
 		array.push(data)
 	})
 
-	const randomElement = array[Math.floor(Math.random() * array.length)];
+	const randomHamster = array[Math.floor(Math.random() * array.length)];
 
-	console.log('Random hamster:', randomElement);
-	return randomElement
+	console.log('Random hamster:', randomHamster);
+	return randomHamster
 }
