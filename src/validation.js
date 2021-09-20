@@ -1,8 +1,10 @@
-function isHamstersObject(maybe) {
-  if (typeof maybe !== "object") {
+function isHamstersObject(maybeHamster) {
+  if (typeof maybeHamster !== "object") {
     return false;
   }
-  let keys = Object.keys(maybe);
+
+  let keys = Object.keys(maybeHamster);
+
   if (
     !keys.includes("name") ||
     !keys.includes("age") ||
