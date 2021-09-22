@@ -87,6 +87,34 @@ router.post("/matches", async (req, res) => {
   }
 });
 // DELETE matches/:id
+router.delete("/matches/:id", async (req, res) => {
+  try {
+    const docRef = await db.collection(MATCHES).doc(req.params.id);
+    const docSnapshot = await docRef.get();
+    if (docSnapshot.exists) {
+      await docRef.delete();
+
+      res.status(200).json({
+        statusCode: 200,
+        status: true,
+        message: `Match with id: ${req.params.id} has been deleted.`,
+      });
+    } else {
+      res.status(404).json({
+        statusCode: 404,
+        status: false,
+        message: "Match Not Found!",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      statusCode: 500,
+      status: false,
+      message: "Ooops! Something went wrong with the servers.",
+      error,
+    });
+  }
+});
 
 // GET /matchWinners/:id
 
