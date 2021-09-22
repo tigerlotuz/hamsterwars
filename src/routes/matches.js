@@ -29,6 +29,35 @@ router.get("/matches", async (req, res) => {
 });
 
 // GET matches/:id
+router.get("/matches/:id", async (req, res) => {
+  try {
+    const docRef = await db.collection(MATCHES).doc(req.params.id);
+    const docSnapshot = await docRef.get();
+
+    if (docSnapshot.exists) {
+      res.status(200).send(docSnapshot.data());
+      // .json({
+      //   statusCode: 200,
+      //   status: true,
+      //   message: "Succussesfully fetched one specific match",
+      //   oneHamster: docSnapshot.data(),
+      // });
+    } else {
+      res.status(404).json({
+        statusCode: 404,
+        status: false,
+        message: "Match Not Found!",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      statusCode: 500,
+      status: false,
+      message: "Ooops! Something went wrong with the servers.",
+      error,
+    });
+  }
+});
 
 // POST matches
 router.post("/matches", async (req, res) => {
