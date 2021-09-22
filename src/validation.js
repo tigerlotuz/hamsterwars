@@ -1,24 +1,43 @@
-function isHamstersObject(maybeHamster) {
-  if (typeof maybeHamster !== "object") {
+const hamsterObject = {
+  name: "name",
+  age: "age",
+  imgName: "imgName",
+  favFood: "favFood",
+  loves: "loves",
+  games: "games",
+  wins: "wins",
+  defeats: "defeats",
+};
+
+function isHamstersObject(object) {
+  if (typeof object !== "object") {
     return false;
   }
-
-  let keys = Object.keys(maybeHamster);
-
-  if (
-    !keys.includes("name") ||
-    !keys.includes("age") ||
-    !keys.includes("imgName") ||
-    !keys.includes("favFood") ||
-    !keys.includes("loves") ||
-    !keys.includes("games") ||
-    !keys.includes("wins") ||
-    !keys.includes("defeats")
-  ) {
-    return false;
+  for (const key of Object.keys(hamsterObject)) {
+    if (key in object) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  return true;
+  if (containsHamsterKeys(object)) {
+    return true;
+  }
 }
 
-module.exports = { isHamstersObject };
+function containsHamsterKeys(object) {
+  if (typeof object !== "object") {
+    return false;
+  }
+
+  for (const key of Object.keys(object)) {
+    if (key in hamsterObject) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
+module.exports = { isHamstersObject, containsHamsterKeys };

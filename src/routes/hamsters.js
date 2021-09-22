@@ -1,84 +1,216 @@
-const express = require("express");
-const router = express.Router();
+const router = require("express").Router();
 
-const { isHamstersObject } = require("../validation.js");
+const { isHamstersObject, containsHamsterKeys } = require("../validation.js");
 
-const database = require("../database.js");
-const connect = database.connect;
+const { connect } = require("../database.js");
 const db = connect();
 const HAMSTERS = "hamsters";
 
-// ADD ONE
+// ADD ONE HAMSTER
 router.post("/", async (req, res) => {
-  let maybeBody = await req.body;
-  if (!isHamstersObject(maybeBody)) {
-    res.status(400);
-    return;
-  } else {
-    let newHamster = await addOneHamster(maybeBody);
-    res.send(newHamster);
+  try {
+    if (isHamstersObject(req.body)) {
+      const docRef = await db.collection(HAMSTERS).add(req.body);
+      res.status(200).json({
+        statusCode: 200,
+        status: true,
+        message: "Your hamster has been created in the data base.",
+        id: docRef.id,
+      });
+    } else {
+      res.status(400).json({
+        statusCode: 400,
+        status: false,
+        message: "Bad Request, your object is not a hamster object",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      statusCode: 500,
+      status: false,
+      message: "Ooops! Something went wrong with the servers.",
+      error,
+    });
   }
 });
 
-// GET ALL /hamsters
+// GET ALL HAMSTERS
 router.get("/", async (req, res) => {
-  let array = await getAllHamsters();
-  res.send(array);
+  try {
+    let array = await getAllHamsters();
+    res.status(200).send(array);
+    // json({
+    //   statusCode: 200,
+    //   status: true,
+    //   message: "Successfully fetched all the hamsters",
+    //   hamsters: array,
+    // });
+  } catch (error) {
+    res.status(500).json({
+      statusCode: 500,
+      status: false,
+      message: "Ooops! Something went wrong with the servers.",
+      error,
+    });
+  }
 });
 
-// GET RANDOM /hamsters/random
+// GET RANDOM HAMSTER
 router.get("/random", async (req, res) => {
-  let randomHamster = await getRandomHamster();
-  res.send(randomHamster);
+  try {
+    let array = await getAllHamsters();
+    let randomHamster = array[Math.floor(Math.random() * array.length)];
+    res.status(200).send(randomHamster);
+    // .json({
+    //   statusCode: 200,
+    //   status: true,
+    //   message: "Succussesfully fetched a random hamsterobject",
+    //   randomHamster,
+    // });
+  } catch (error) {
+    res.status(500).json({
+      statusCode: 500,
+      status: false,
+      message: "Ooops! Something went wrong with the servers.",
+      error,
+    });
+  }
 });
 
-// GET ONE /hamsters/:id
+// GET CUTEST HAMSTER
+router.get("/cutest", async (req, res) => {
+  try {
+    const array = await getAllHamsters();
+
+    const sortedArray = array.sort((a, b) => {
+      return b.wins - b.defeats - (a.wins - a.defeats);
+    });
+    let currentHighestScore = 0;
+    let cutestHamsterArray = [];
+    sortedArray.forEach((hamster) => {
+      let hamsterScore = hamster.wins - hamster.defeats;
+      if (hamsterScore >= currentHighestScore) {
+        currentHighestScore = hamsterScore;
+        cutestHamsterArray.push(hamster);
+      } else {
+        return;
+      }
+    });
+
+    res.status(200).send(cutestHamsterArray);
+    // .json({
+    //   statusCode: 200,
+    //   status: true,
+    //   message: "Succussesfully fetched cutest hamster",
+    //   cutestHamsters: cutestHamsterArray,
+    // });
+  } catch (error) {
+    res.status(500).json({
+      statusCode: 500,
+      status: false,
+      message: "Ooops! Something went wrong with the servers.",
+      error,
+    });
+  }
+});
+
+// GET ONE HAMSTER
 router.get("/:id", async (req, res) => {
-  let oneHamster = await getOneHamster(req.params.id);
-  if (oneHamster) {
-    res.send(oneHamster);
-  } else {
-    res.sendStatus(404);
+  try {
+    const docRef = await db.collection(HAMSTERS).doc(req.params.id);
+    const docSnapshot = await docRef.get();
+    if (docSnapshot.exists) {
+      res.status(200).send(docSnapshot.data());
+      // .json({
+      //   statusCode: 200,
+      //   status: true,
+      //   message: "Succussesfully fetched one specific hamster",
+      //   oneHamster: docSnapshot.data(),
+      // });
+    } else {
+      res.status(404).json({
+        statusCode: 404,
+        status: false,
+        message: "Hamster Not Found!",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      statusCode: 500,
+      status: false,
+      message: "Ooops! Something went wrong with the servers.",
+      error,
+    });
   }
 });
 
-// GET CUTEST /hamsters/cutest
-
-// UPDATE ONE
+// UPDATE ONE HAMSTER
 router.put("/:id", async (req, res) => {
-  let hamsterId = await getAllHamsters(req.params.id);
-  if (!hamsterId) {
-    res.sendStatus(404);
+  try {
+    const docRef = await db.collection(HAMSTERS).doc(req.params.id);
+    const docSnapshot = await docRef.get();
+    if (docSnapshot.exists) {
+      if (containsHamsterKeys(req.body)) {
+        await docRef.set(req.body, { merge: true });
+        res.status(200).json({
+          statusCode: 200,
+          status: true,
+          message: `Hamster with id: ${req.params.id} has been updated.`,
+        });
+      } else {
+        res.status(400).json({
+          statusCode: 400,
+          status: false,
+          message: "Bad Request, your object is not a hamster object",
+        });
+      }
+    } else {
+      res.status(404).json({
+        statusCode: 404,
+        status: false,
+        message: "Hamster Not Found!",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      statusCode: 500,
+      status: false,
+      message: "Ooops! Something went wrong with the servers.",
+      error,
+    });
   }
-
-  let maybeBody = req.body;
-  if (!isHamstersObject(maybeBody)) {
-    res.status(400);
-  }
-
-  await updateOneHamster(req.params.id, maybeBody);
-  res.sendStatus(200);
 });
 
-// DELETE one
+// DELETE ONE HAMSTER
 router.delete("/:id", async (req, res) => {
-  let maybeId = await deleteOneHamster(req.params.id);
-  if (!maybeId) {
-    res.status(404);
-  } else {
-    res.sendStatus(200);
+  try {
+    const docRef = await db.collection(HAMSTERS).doc(req.params.id);
+    const docSnapshot = await docRef.get();
+    if (docSnapshot.exists) {
+      await docRef.delete();
+      res.status(200).json({
+        statusCode: 200,
+        status: true,
+        message: `Hamster with id: ${req.params.id} has been deleted.`,
+      });
+    } else {
+      res.status(404).json({
+        statusCode: 404,
+        status: false,
+        message: "Hamster Not Found!",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      statusCode: 500,
+      status: false,
+      message: "Ooops! Something went wrong with the servers.",
+      error,
+    });
   }
 });
 
-// functions
-
-// ADD ONE
-async function addOneHamster(newHamsterObject) {
-  const docRef = await db.collection(HAMSTERS).add(newHamsterObject);
-  return { id: docRef.id };
-}
-
-// GET ALL
+// FUNCTION GET ALL HAMSTERS
 async function getAllHamsters() {
   const hamstersRef = db.collection(HAMSTERS);
   const hamstersSnapshot = await hamstersRef.get();
@@ -94,47 +226,6 @@ async function getAllHamsters() {
     array.push(data);
   });
   return array;
-}
-
-// GET ONE
-async function getOneHamster(id) {
-  const docRef = db.collection(HAMSTERS).doc(id);
-  const docSnapshot = await docRef.get();
-
-  if (docSnapshot.exists) {
-    return await docSnapshot.data();
-  } else {
-    return null;
-  }
-}
-
-// GET RANDOM
-async function getRandomHamster() {
-  let array = await getAllHamsters();
-  let randomHamster = array[Math.floor(Math.random() * array.length)];
-
-  return randomHamster;
-}
-
-// GET CUTEST
-
-// UPDATE ONE
-async function updateOneHamster(id, object) {
-  const docRef = db.collection(HAMSTERS).doc(id);
-  const settings = { merge: true };
-  docRef.set(object, settings);
-}
-
-// DELETE ONE
-async function deleteOneHamster(id) {
-  const docRef = db.collection(HAMSTERS).doc(id);
-  const docSnapshot = await docRef.get();
-  if (docSnapshot.exists) {
-    await docRef.delete();
-    return true;
-  } else {
-    return false;
-  }
 }
 
 module.exports = router;
