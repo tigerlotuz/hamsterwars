@@ -1,5 +1,7 @@
 const router = require("express").Router();
 
+const { isMatchObject } = require("../validation.js");
+
 const { connect } = require("../database.js");
 const db = connect();
 
@@ -29,7 +31,32 @@ router.get("/matches", async (req, res) => {
 // GET matches/:id
 
 // POST matches
-
+router.post("/matches", async (req, res) => {
+  try {
+    if (isMatchObject(req.body)) {
+      const docRef = await db.collection(MATCHES).add(req.body);
+      res.status(200).json({
+        statusCode: 200,
+        status: true,
+        message: "Your match has been created in the data base.",
+        id: docRef.id,
+      });
+    } else {
+      res.status(400).json({
+        statusCode: 400,
+        status: false,
+        message: "Bad Request, your object is not a match object",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      statusCode: 500,
+      status: false,
+      message: "Ooops! Something went wrong with the servers.",
+      error,
+    });
+  }
+});
 // DELETE matches/:id
 
 // GET /matchWinners/:id

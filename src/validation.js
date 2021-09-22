@@ -40,4 +40,25 @@ function containsHamsterKeys(object) {
   }
 }
 
-module.exports = { isHamstersObject, containsHamsterKeys };
+const matchObject = {
+  winnerId: "winnerId",
+  loserId: "loserId",
+};
+
+function isMatchObject(object) {
+  if (typeof object !== "object") {
+    return false;
+  }
+  for (const key of Object.keys(matchObject)) {
+    if (key in object) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  if (containsMatchKeys(object)) {
+    return true;
+  }
+}
+module.exports = { isHamstersObject, containsHamsterKeys, isMatchObject };
