@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const { isHamstersObject, containsHamsterKeys } = require("../validation.js");
+const { getAllHamsters } = require("../functions.js");
 
 const { connect } = require("../database.js");
 const db = connect();
@@ -209,23 +210,5 @@ router.delete("/:id", async (req, res) => {
     });
   }
 });
-
-// FUNCTION GET ALL HAMSTERS
-async function getAllHamsters() {
-  const hamstersRef = db.collection(HAMSTERS);
-  const hamstersSnapshot = await hamstersRef.get();
-
-  if (hamstersSnapshot.empty) {
-    return [];
-  }
-  let array = [];
-
-  await hamstersSnapshot.forEach(async (docRef) => {
-    let data = await docRef.data();
-    data.id = docRef.id;
-    array.push(data);
-  });
-  return array;
-}
 
 module.exports = router;

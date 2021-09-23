@@ -1,13 +1,13 @@
 const router = require("express").Router();
 
 const { isMatchObject } = require("../validation.js");
+const { getAllHamsters, getAllMatches } = require("../functions.js");
 
 const { connect } = require("../database.js");
 const db = connect();
-
 const MATCHES = "matches";
 
-// GET /matches
+// GET ALL MATCHES
 router.get("/matches", async (req, res) => {
   try {
     let array = await getAllMatches();
@@ -28,7 +28,7 @@ router.get("/matches", async (req, res) => {
   }
 });
 
-// GET matches/:id
+// GET ONE MATCH
 router.get("/matches/:id", async (req, res) => {
   try {
     const docRef = await db.collection(MATCHES).doc(req.params.id);
@@ -59,7 +59,7 @@ router.get("/matches/:id", async (req, res) => {
   }
 });
 
-// POST matches
+// ADD ONE MATCH
 router.post("/matches", async (req, res) => {
   try {
     if (isMatchObject(req.body)) {
@@ -86,7 +86,7 @@ router.post("/matches", async (req, res) => {
     });
   }
 });
-// DELETE matches/:id
+// DELETE ONE MATCH
 router.delete("/matches/:id", async (req, res) => {
   try {
     const docRef = await db.collection(MATCHES).doc(req.params.id);
@@ -116,28 +116,79 @@ router.delete("/matches/:id", async (req, res) => {
   }
 });
 
-// GET /matchWinners/:id
+// GET ONE MATCHWINNER
+router.get("/matchWinners/:id", async (req, res) => {
+  try {
+    let array = await getAllMatches();
 
-// GET /winners
+    const hasMinOneWin = await array.some(
+      (match) => match.winnerId == req.params.id
+    );
 
-// GET /losers
-
-// FUNCTION GET ALL MATCHES
-async function getAllMatches() {
-  const matchesRef = db.collection(MATCHES);
-  const matchesSnapshot = await matchesRef.get();
-
-  if (matchesSnapshot.empty) {
-    return [];
+    if (hasMinOneWin === true) {
+      const winnerArray = array.filter((match) => {
+        return match.winnerId == req.params.id;
+      });
+      res.status(200).send(winnerArray);
+    } else {
+      res.status(404).json({
+        statusCode: 404,
+        status: false,
+        message: "Hamster not found or hamster have no wins",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      statusCode: 500,
+      status: false,
+      message: "Ooops! Something went wrong with the servers.",
+      error,
+    });
   }
-  let array = [];
+});
 
-  await matchesSnapshot.forEach(async (docRef) => {
-    let data = await docRef.data();
-    data.id = docRef.id;
-    array.push(data);
-  });
-  return array;
-}
+// GET WINNERS
+router.get("/winners", async (req, res) => {
+  try {
+    const array = await getAllHamsters();
+
+    const sortedArray = array.sort((a, b) => {
+      return b.wins - a.wins;
+    });
+
+    let mostWinsArray = sortedArray.slice(0, 5);
+
+    res.status(200).send(mostWinsArray);
+  } catch (error) {
+    res.status(500).json({
+      statusCode: 500,
+      status: false,
+      message: "Ooops! Something went wrong with the servers.",
+      error,
+    });
+  }
+});
+
+// GET LOSERS
+router.get("/losers", async (req, res) => {
+  try {
+    const array = await getAllHamsters();
+
+    const sortedArray = array.sort((a, b) => {
+      return b.defeats - a.defeats;
+    });
+
+    let mostLosesArray = sortedArray.slice(0, 5);
+
+    res.status(200).send(mostLosesArray);
+  } catch (error) {
+    res.status(500).json({
+      statusCode: 500,
+      status: false,
+      message: "Ooops! Something went wrong with the servers.",
+      error,
+    });
+  }
+});
 
 module.exports = router;
