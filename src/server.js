@@ -4,9 +4,6 @@ const app = express();
 const hamstersRouter = require("./routes/hamsters.js");
 const matchesRouter = require("./routes/matches.js");
 
-// const { connect } = require("./database.js");
-// connect();
-
 const PORT = process.env.PORT || 1666;
 
 app.use(cors());
@@ -17,11 +14,12 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use("/img", express.static(__dirname + "/hamsters"));
+app.use("/", express.static(__dirname + "/../public"));
+
 app.use("/hamsters", hamstersRouter);
 app.use("/", matchesRouter);
 
 app.listen(PORT, () => {
   console.log(`The server is running on port: ${PORT}.`);
 });
-
-// module.exports = app;
