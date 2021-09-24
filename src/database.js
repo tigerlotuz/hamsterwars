@@ -1,6 +1,11 @@
 const admin = require("firebase-admin");
+let serviceAccount;
 
-const serviceAccount = require("./secrets/firebase-key.json");
+if (process.env.FIREBASE_KEY) {
+  serviceAccount = JSON.parse(process.env.FIREBASE_KEY);
+} else {
+  serviceAccount = require("./secrets/firebase-key.json");
+}
 
 function connect() {
   const app = !admin.apps.length

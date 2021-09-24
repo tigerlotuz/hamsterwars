@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test-frontend": "npx http-server ./evaluate/",
-    "start": "nodemon src/server.js"
+    "start": "node src/server.js"
   },
   "keywords": [
     "Firestore",
