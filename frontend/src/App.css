@@ -1,0 +1,41 @@
+body {
+  min-height: 100vh;
+  min-width: 280px;
+  text-align: center;
+}
+h1 {
+  font-size: 48px;
+}
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.header-nav a {
+  color: #faebefff;
+  text-decoration: none;
+  margin: 0 0.5rem 0 0.5rem;
+}
+.header-mobile-nav a {
+  color: #333d79ff;
+  text-decoration: none;
+}
+.header-logo-container {
+  display: flex;
+  align-items: center;
+}
+.header-logo {
+  background-image: url("./assets/hamsterwars-logo.svg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding-right: 0.5em;
+  height: 30px;
+  width: 30px;
+}
+main {
+  background-color: #faebefff;
+  padding: 1em;
+  margin: 0;
+  min-height: 100vh;
+}
