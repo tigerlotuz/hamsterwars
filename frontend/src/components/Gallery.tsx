@@ -1,25 +1,29 @@
 import { Grid, Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { useGetAllHamstersQuery } from "../features/hamsterApi";
 
 const Gallery = () => {
+  const { data = [], isFetching } = useGetAllHamstersQuery();
+
+  if (isFetching) return "Loading...";
+
   return (
     <Grid container spacing={1}>
       <Grid item xs={12}>
         <h1>The Hamsters</h1>
       </Grid>
 
-      {itemData.map((item) => (
-        <Grid item xs={12} sm={6} md={3} key={item.img}>
-          <Card key={item.img}>
+      {data.map((hamster) => (
+        <Grid item xs={12} sm={6} md={3} key={hamster.id}>
+          <Card key={hamster.imgName}>
             <CardMedia
               component="img"
-              height={200}
-              src={`${item.img}?w=248&fit=crop&auto=format`}
-              srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-              alt={item.title}
+              height={260}
+              src={`https://tigerlotuz-hamsterwars.herokuapp.com/img/${hamster.imgName}`}
+              alt={hamster.name}
               loading="lazy"
             />
             <CardContent>
-              <Typography variant="subtitle1">{item.title}</Typography>
+              <Typography variant="subtitle1">{hamster.name}</Typography>
             </CardContent>
           </Card>
         </Grid>
@@ -27,56 +31,5 @@ const Gallery = () => {
     </Grid>
   );
 };
-
-const itemData = [
-  {
-    img: "https://tigerlotuz-hamsterwars.herokuapp.com/img/hamster-2.jpg",
-    title: "Hamster",
-  },
-  {
-    img: "https://tigerlotuz-hamsterwars.herokuapp.com/img/hamster-2.jpg",
-    title: "Hamster",
-  },
-  {
-    img: "https://tigerlotuz-hamsterwars.herokuapp.com/img/hamster-2.jpg",
-    title: "Hamster",
-  },
-  {
-    img: "https://tigerlotuz-hamsterwars.herokuapp.com/img/hamster-2.jpg",
-    title: "Hamster",
-  },
-  {
-    img: "https://tigerlotuz-hamsterwars.herokuapp.com/img/hamster-2.jpg",
-    title: "Hamster",
-  },
-  {
-    img: "https://tigerlotuz-hamsterwars.herokuapp.com/img/hamster-2.jpg",
-    title: "Hamster",
-  },
-  {
-    img: "https://tigerlotuz-hamsterwars.herokuapp.com/img/hamster-2.jpg",
-    title: "Hamster",
-  },
-  {
-    img: "https://tigerlotuz-hamsterwars.herokuapp.com/img/hamster-2.jpg",
-    title: "Hamster",
-  },
-  {
-    img: "https://tigerlotuz-hamsterwars.herokuapp.com/img/hamster-2.jpg",
-    title: "Hamster",
-  },
-  {
-    img: "https://tigerlotuz-hamsterwars.herokuapp.com/img/hamster-2.jpg",
-    title: "Hamster",
-  },
-  {
-    img: "https://tigerlotuz-hamsterwars.herokuapp.com/img/hamster-2.jpg",
-    title: "Hamster",
-  },
-  {
-    img: "https://tigerlotuz-hamsterwars.herokuapp.com/img/hamster-2.jpg",
-    title: "Hamster",
-  },
-];
 
 export default Gallery;
