@@ -87,7 +87,7 @@ const AddHamster = () => {
                 <Button
                   type="submit"
                   variant="contained"
-                  sx={{ margin: "2em" }}
+                  sx={{ margin: "2em 0" }}
                 >
                   Add Hamster
                 </Button>

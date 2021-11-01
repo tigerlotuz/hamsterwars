@@ -20,8 +20,12 @@ const Gallery = () => {
       <Grid item xs={12}>
         <h1>The Hamsters</h1>
       </Grid>
-      <Grid item xs={12} sx={{ display: "flex", justifyContent: "flex-end" }}>
-        <Button onClick={() => history.push("/addhamster")} variant="contained">
+      <Grid item xs={12}>
+        <Button
+          onClick={() => history.push("/addhamster")}
+          variant="contained"
+          sx={{ margin: "2em 0" }}
+        >
           Add New Hamster
         </Button>
       </Grid>
