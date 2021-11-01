@@ -1,10 +1,11 @@
 
 
 export interface Hamster {
-    id: string
+    id?: string
     name: string
     age: number
     imgName: string
+    newImg?: string
     favFood: string
     loves: string
     games: number
