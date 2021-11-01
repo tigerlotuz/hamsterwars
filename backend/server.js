@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/img", express.static(__dirname + "/hamsters"));
-app.use("/", express.static(__dirname + "'/../build'"));
+app.use("/", express.static(__dirname + "/../build"));
 
 app.use("/hamsters", hamstersRouter);
 app.use("/", matchesRouter);

@@ -17,14 +17,14 @@ function connect() {
     const db = admin.firestore();
     return db;
   }
-}
 
-// const app = !admin.apps.length
-//   ? admin.initializeApp({
-//       credential: admin.credential.cert(serviceAccount),
-//     })
-//   : admin.app();
-// const db = admin.firestore();
-// return db;
+  // const app = !admin.apps.length
+  //   ? admin.initializeApp({
+  //       credential: admin.credential.cert(serviceAccount),
+  //     })
+  //   : admin.app();
+  // const db = admin.firestore();
+  // return db;
+}
 
 module.exports = { connect };
