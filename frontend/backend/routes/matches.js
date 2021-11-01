@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const { isMatchObject } = require("../validation.js");
+const { isMatchObject } = require("../functions.js");
 const { getAllHamsters, getAllMatches } = require("../functions.js");
 
 const { connect } = require("../database.js");
@@ -122,12 +122,12 @@ router.get("/matchWinners/:id", async (req, res) => {
     let array = await getAllMatches();
 
     const hasMinOneWin = await array.some(
-      (match) => match.winnerId == req.params.id
+      (match) => match.winnerId === req.params.id
     );
 
     if (hasMinOneWin === true) {
       const winnerArray = array.filter((match) => {
-        return match.winnerId == req.params.id;
+        return match.winnerId === req.params.id;
       });
       res.status(200).send(winnerArray);
     } else {

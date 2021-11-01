@@ -1,7 +1,26 @@
 {
-  "name": "frontend",
+  "name": "hamsterwars",
   "version": "0.1.0",
+  "description": "Hamster Wars - assignment",
   "private": true,
+  "keywords": [
+    "Firestore",
+    "Firebase",
+    "Node",
+    "Express",
+    "REST",
+    "API"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tigerlotuz/hamsterwars.git"
+  },
+  "author": "Sara Öst",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tigerlotuz/hamsterwars/issues"
+  },
+  "homepage": "https://github.com/tigerlotuz/hamsterwars#readme",
   "dependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
@@ -25,10 +44,15 @@
     "redux": "^4.1.2",
     "typescript": "^4.4.4",
     "web-vitals": "^1.1.2",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "firebase": "^9.0.2",
+    "firebase-admin": "^9.11.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node backend/server.js",
+    "start-frontend": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
