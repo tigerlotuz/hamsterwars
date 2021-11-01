@@ -1,0 +1,35 @@
+{
+  "name": "hamsterwars",
+  "version": "1.0.0",
+  "description": "Hamster Wars - assignment",
+  "main": "index.js",
+  "scripts": {
+    "test-frontend": "npx http-server ./evaluate/",
+    "start": "node src/server.js"
+  },
+  "keywords": [
+    "Firestore",
+    "Firebase",
+    "Node",
+    "Express",
+    "REST",
+    "API"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tigerlotuz/hamsterwars.git"
+  },
+  "author": "Sara Öst",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tigerlotuz/hamsterwars/issues"
+  },
+  "homepage": "https://github.com/tigerlotuz/hamsterwars#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "firebase": "^9.0.2",
+    "firebase-admin": "^9.11.1",
+    "nodemon": "^2.0.12"
+  }
+}

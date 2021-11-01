@@ -61,18 +61,4 @@ function isMatchObject(object) {
     return true;
   }
 }
-
-function containsMatchKeys(object) {
-  if (typeof object !== "object") {
-    return false;
-  }
-
-  for (const key of Object.keys(object)) {
-    if (key in matchObject) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-}
 module.exports = { isHamstersObject, containsHamsterKeys, isMatchObject };
