@@ -15,10 +15,16 @@ const Gallery = () => {
 
   if (isFetching) return <h2>Loading...</h2>;
 
+  const backToTop = () => {
+    window[`scrollTo`]({ top: 0, behavior: `smooth` });
+  };
+
   return (
     <Grid container spacing={1}>
       <Grid item xs={12}>
-        <h1>The Hamsters</h1>
+        <Typography variant="h3" m={2}>
+          The Hamsters
+        </Typography>
       </Grid>
       <Grid item xs={12}>
         <Button
@@ -33,10 +39,15 @@ const Gallery = () => {
       {data.map((hamster) => (
         <Grid item xs={12} sm={6} md={3} key={hamster.id}>
           <Card>
+            {}
             <CardMedia
               component="img"
               height={260}
-              src={`https://tigerlotuz-hamsterwars.herokuapp.com/img/${hamster.imgName}`}
+              src={
+                hamster.newImg
+                  ? hamster.newImg
+                  : `https://tigerlotuz-hamsterwars.herokuapp.com/img/${hamster.imgName}`
+              }
               alt={hamster.name}
               loading="lazy"
             />
@@ -46,6 +57,16 @@ const Gallery = () => {
           </Card>
         </Grid>
       ))}
+
+      <Grid item xs={12}>
+        <Button
+          onClick={backToTop}
+          variant="contained"
+          sx={{ margin: "2em 0" }}
+        >
+          Back To Top
+        </Button>
+      </Grid>
     </Grid>
   );
 };
