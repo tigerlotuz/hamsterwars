@@ -1,9 +1,11 @@
-import { Grid, Button } from "@mui/material";
+import { Grid, Button, Typography } from "@mui/material";
 import { Formik, Form } from "formik";
 import * as yup from "yup";
 import { useAddOneHamsterMutation } from "../features/hamsterApi";
 import { Hamster } from "../types/Hamster";
 import TextFieldWrapper from "./TextFieldWrapper";
+import { useHistory } from "react-router-dom";
+import { useGetAllHamstersQuery } from "../features/hamsterApi";
 
 interface initialValues {
   name: string;
@@ -22,10 +24,15 @@ const FORM_VALIDATION = yup.object().shape({
   age: yup
     .number()
     .typeError("Du måste ange en siffra")
+    .positive("Du måste ange ett positivt tal")
+    .integer("Du måste ange ett heltal")
     .required("Du måste ange en ålder"),
   loves: yup.string().required("Du måste ange ett intresse"),
   favFood: yup.string().required("Du måste ange en maträtt"),
-  newImg: yup.string().required("Du måste ange en bild-url"),
+  newImg: yup
+    .string()
+    .url("Du måste ange en giltig URL")
+    .required("Du måste ange en bild URL"),
 });
 
 const INITIAL_FORM_STATE: initialValues = {
@@ -42,6 +49,8 @@ const INITIAL_FORM_STATE: initialValues = {
 
 const AddHamster = () => {
   const [addHamster] = useAddOneHamsterMutation();
+  const { refetch } = useGetAllHamstersQuery();
+  let history = useHistory();
 
   const addHamsterFunc = (values: initialValues) => {
     const newHamster: Hamster = {
@@ -49,13 +58,23 @@ const AddHamster = () => {
       age: Number(values.age),
     };
 
-    addHamster(newHamster);
+    addHamster(newHamster)
+      .unwrap()
+      .then(() => {
+        refetch();
+        history.push("/gallery");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
     <Grid container spacing={1}>
       <Grid item xs={12}>
-        <h1>Add New Hamster</h1>
+        <Typography variant="h4" m={2}>
+          Add New Hamster
+        </Typography>
       </Grid>
       <Grid item xs={12}>
         <Formik
