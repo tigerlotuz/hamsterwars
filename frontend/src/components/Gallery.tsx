@@ -7,7 +7,7 @@ import {
   Button,
 } from "@mui/material";
 import { useGetAllHamstersQuery } from "../features/hamsterApi";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Gallery = () => {
   const { data = [], isFetching } = useGetAllHamstersQuery();
@@ -20,7 +20,7 @@ const Gallery = () => {
   };
 
   return (
-    <Grid container spacing={1}>
+    <Grid container spacing={2}>
       <Grid item xs={12}>
         <Typography variant="h3" m={2}>
           The Hamsters
@@ -38,23 +38,24 @@ const Gallery = () => {
 
       {data.map((hamster) => (
         <Grid item xs={12} sm={6} md={3} key={hamster.id}>
-          <Card>
-            {}
-            <CardMedia
-              component="img"
-              height={260}
-              src={
-                hamster.newImg
-                  ? hamster.newImg
-                  : `https://tigerlotuz-hamsterwars.herokuapp.com/img/${hamster.imgName}`
-              }
-              alt={hamster.name}
-              loading="lazy"
-            />
-            <CardContent>
-              <Typography variant="subtitle1">{hamster.name}</Typography>
-            </CardContent>
-          </Card>
+          <Link to={"/gallery/" + hamster.id}>
+            <Card className="hamster-card">
+              <CardMedia
+                component="img"
+                height={260}
+                src={
+                  hamster.newImg
+                    ? hamster.newImg
+                    : `https://tigerlotuz-hamsterwars.herokuapp.com/img/${hamster.imgName}`
+                }
+                alt={hamster.name}
+                loading="lazy"
+              />
+              <CardContent>
+                <Typography variant="subtitle1">{hamster.name}</Typography>
+              </CardContent>
+            </Card>
+          </Link>
         </Grid>
       ))}
 

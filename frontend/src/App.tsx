@@ -10,6 +10,7 @@ import Start from "./components/Start";
 import Statistics from "./components/Statistics";
 import Vote from "./components/Vote";
 import AddHamster from "./components/AddHamster";
+import HamsterInfo from "./components/HamsterInfo";
 
 const theme = createTheme({
   palette: {
@@ -27,7 +28,6 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="App">
         <HeaderMenu />
-
         <main>
           <Switch>
             <Route path="/" exact>
@@ -35,6 +35,9 @@ function App() {
             </Route>
             <Route path="/vote">
               <Vote />
+            </Route>
+            <Route path="/gallery/:id">
+              <HamsterInfo />
             </Route>
             <Route path="/gallery">
               <Gallery />
