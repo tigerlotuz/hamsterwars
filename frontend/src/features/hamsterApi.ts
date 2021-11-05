@@ -17,7 +17,7 @@ export const hamsterApi = createApi({
         getRandomHamster: builder.query<Hamster, void>({
             query: () => `/hamsters/random`,
         }),
-        getCutestHamster: builder.query<Hamster, void>({
+        getCutestHamster: builder.query<Hamster[], void>({
             query: () => `/hamsters/cutest`,
         }),
         addOneHamster: builder.mutation<Hamster, Hamster>({
