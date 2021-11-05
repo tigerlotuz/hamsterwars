@@ -26,18 +26,9 @@ const Gallery = () => {
           The Hamsters
         </Typography>
       </Grid>
-      <Grid item xs={12}>
-        <Button
-          onClick={() => history.push("/addhamster")}
-          variant="contained"
-          sx={{ margin: "2em 0" }}
-        >
-          Add New Hamster
-        </Button>
-      </Grid>
 
       {data.map((hamster) => (
-        <Grid item xs={12} sm={6} md={3} key={hamster.id}>
+        <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={hamster.id}>
           <Link to={"/gallery/" + hamster.id}>
             <Card className="hamster-card">
               <CardMedia
@@ -59,14 +50,26 @@ const Gallery = () => {
         </Grid>
       ))}
 
-      <Grid item xs={12}>
-        <Button
-          onClick={backToTop}
-          variant="contained"
-          sx={{ margin: "2em 0" }}
+      <Grid container justifyContent="center">
+        <Grid
+          item
+          xs={12}
+          sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
         >
-          Back To Top
-        </Button>
+          <Button
+            onClick={backToTop}
+            variant="contained"
+            sx={{ margin: "0.5em 0.5em" }}
+          >
+            To Top
+          </Button>
+          <Button
+            onClick={() => history.push("/addhamster")}
+            variant="contained"
+          >
+            Add Hamster
+          </Button>
+        </Grid>
       </Grid>
     </Grid>
   );
