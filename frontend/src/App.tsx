@@ -28,7 +28,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="App">
         <HeaderMenu />
-        <main>
+        <main className="main-content">
           <Switch>
             <Route path="/" exact>
               <Start />
