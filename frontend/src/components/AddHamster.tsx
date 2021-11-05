@@ -104,11 +104,18 @@ const AddHamster = () => {
 
               <Grid item xs={12}>
                 <Button
+                  onClick={() => history.push("/gallery")}
+                  variant="outlined"
+                  sx={{ margin: "2em 0" }}
+                >
+                  CANCEL
+                </Button>
+                <Button
                   type="submit"
                   variant="contained"
                   sx={{ margin: "2em 0" }}
                 >
-                  Add Hamster
+                  ADD HAMSTER
                 </Button>
               </Grid>
             </Grid>
