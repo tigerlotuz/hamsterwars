@@ -15,10 +15,14 @@ app.use((req, res, next) => {
 });
 
 app.use("/img", express.static(__dirname + "/hamsters"));
-app.use("/", express.static(__dirname + "/../public"));
+app.use("/", express.static(__dirname + "/../build"));
 
 app.use("/hamsters", hamstersRouter);
 app.use("/", matchesRouter);
+
+app.get("*", (req, res) => {
+  res.sendFile(__dirname + "/build/index.html");
+});
 
 app.listen(PORT, () => {
   console.log(`The server is running on port: ${PORT}.`);
