@@ -1,5 +1,6 @@
+
 export interface Match {
-    id?: string
+    id: string
     winnerId: string
     loserId: string
 }
