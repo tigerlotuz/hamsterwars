@@ -22,7 +22,7 @@ const Gallery = () => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <Typography variant="h3" m={2}>
+        <Typography variant="h2" m={2}>
           The Hamsters
         </Typography>
       </Grid>
@@ -43,7 +43,7 @@ const Gallery = () => {
                 loading="lazy"
               />
               <CardContent>
-                <Typography variant="subtitle1">{hamster.name}</Typography>
+                <Typography variant="h5">{hamster.name}</Typography>
               </CardContent>
             </Card>
           </Link>

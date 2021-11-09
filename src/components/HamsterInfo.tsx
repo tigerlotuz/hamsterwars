@@ -39,91 +39,88 @@ const HamsterInfo = () => {
 
   if (isFetching) return <h2>Loading...</h2>;
   return (
-    <Grid container gap={2} justifyContent="center">
-      <Grid item xs={12}>
-        <Typography variant="h3" m={2}>
+    <Grid container justifyContent="center" gap={2}>
+      <Grid item xs={12} m={2}>
+        <Typography variant="h2" m={2}>
           {data ? `${data.name}` : "Hamster Info"}
         </Typography>
       </Grid>
 
       {data ? (
-        <Grid container justifyContent="center" key={data.id}>
-          <Card sx={{ textAlign: "left" }}>
-            <Grid container>
-              <Grid item xs={12} sm={6}>
-                <CardMedia
-                  component="img"
-                  height={400}
-                  src={
-                    data.newImg
-                      ? data.newImg
-                      : `https://tigerlotuz-hamsterwars.herokuapp.com/img/${data.imgName}`
-                  }
-                  alt={data.name}
-                  loading="lazy"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <CardContent>
-                  <Grid item xs={12}>
-                    <Typography variant="subtitle1">
-                      namn: {data.name}
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Typography variant="subtitle1">
-                      ålder: {data.age}
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Typography variant="subtitle1">
-                      intressen: {data.loves}
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Typography variant="subtitle1">
-                      favoritmat: {data.favFood}
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Typography variant="subtitle1">
-                      games: {data.games}
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Typography variant="subtitle1">
-                      wins: {data.wins}
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Typography variant="subtitle1">
-                      defeats: {data.defeats}
-                    </Typography>
-                  </Grid>
-                </CardContent>
-              </Grid>
-            </Grid>
-          </Card>
-          <Grid item xs={12}>
-            <Button
-              variant="outlined"
-              onClick={deleteHamsterFunc}
-              sx={{ margin: "2em 0" }}
-            >
-              DELETE
-            </Button>
-            <Button
-              variant="contained"
-              onClick={() => history.push("/gallery")}
-              sx={{ margin: "2em 0" }}
-            >
-              GO BACK
-            </Button>
+        <Grid container justifyContent="center" gap={2}>
+          <Grid item xs={12} sm={6} key={data.id}>
+            <Card>
+              <CardMedia
+                component="img"
+                height={400}
+                src={
+                  data.newImg
+                    ? data.newImg
+                    : `https://tigerlotuz-hamsterwars.herokuapp.com/img/${data.imgName}`
+                }
+                alt={data.name}
+                loading="lazy"
+              />
+            </Card>
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <Card sx={{ textAlign: "left" }}>
+              <CardContent>
+                <Grid item xs={12}>
+                  <Typography variant="h6">Namn: {data.name}</Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography variant="h6">Ålder: {data.age}</Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography variant="h6">Intressen: {data.loves}</Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography variant="h6">
+                    Favoritmat: {data.favFood}
+                  </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography variant="h6">Fighter: {data.games}</Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography variant="h6">Segrar: {data.wins}</Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography variant="h6">
+                    Förluster: {data.defeats}
+                  </Typography>
+                </Grid>
+              </CardContent>
+            </Card>
           </Grid>
         </Grid>
       ) : (
-        <div> Kunde inte hitta hamstern med id: {id}.</div>
+        <Grid container justifyContent="center" spacing={2}>
+          <Grid item xs={12} m={2}>
+            <Typography variant="h5">
+              Kunde inte hitta hamstern med id: {id}..
+            </Typography>
+          </Grid>
+        </Grid>
       )}
+      <Grid item xs={12}>
+        <Button
+          variant="outlined"
+          onClick={deleteHamsterFunc}
+          sx={{ margin: "2em 0" }}
+        >
+          DELETE
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() => history.push("/gallery")}
+          sx={{ margin: "0.5em 0.5em" }}
+        >
+          GO BACK
+        </Button>
+      </Grid>
     </Grid>
   );
 };

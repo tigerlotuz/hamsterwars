@@ -18,7 +18,7 @@ const Start = () => {
   return (
     <Grid container spacing={2} justifyContent="center">
       <Grid item xs={12}>
-        <Typography variant="h3" m={2}>
+        <Typography variant="h2" m={2}>
           Hamster Wars
         </Typography>
         <Typography variant="h6" m={2}>
