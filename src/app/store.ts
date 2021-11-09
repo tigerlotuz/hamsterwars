@@ -1,14 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { hamsterApi } from "../features/hamsterApi";
+import { matchesApi } from "../features/matchesApi";
 // import hamsterReducer from '../features/hamsterSlice'
 
 
 export const store = configureStore({
     reducer: {
-        [hamsterApi.reducerPath]: hamsterApi.reducer
+        [hamsterApi.reducerPath]: hamsterApi.reducer,
+        [matchesApi.reducerPath]: matchesApi.reducer
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(hamsterApi.middleware)
+        getDefaultMiddleware().concat(hamsterApi.middleware, matchesApi.middleware)
 })
 
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
