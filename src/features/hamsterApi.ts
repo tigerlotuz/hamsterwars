@@ -14,7 +14,10 @@ export const hamsterApi = createApi({
         getOneHamster: builder.query<Hamster, string>({
             query: (id) => `/hamsters/${id}`,
         }),
-        getRandomHamster: builder.query<Hamster, void>({
+        getFirstRandomHamster: builder.query<Hamster, void>({
+            query: () => `/hamsters/random`,
+        }),
+        getSecondRandomHamster: builder.query<Hamster, void>({
             query: () => `/hamsters/random`,
         }),
         getCutestHamster: builder.query<Hamster[], void>({
@@ -45,7 +48,8 @@ export const hamsterApi = createApi({
 export const {
     useGetAllHamstersQuery,
     useGetOneHamsterQuery,
-    useGetRandomHamsterQuery,
+    useGetFirstRandomHamsterQuery,
+    useGetSecondRandomHamsterQuery,
     useGetCutestHamsterQuery,
     useAddOneHamsterMutation,
     useUpdateOneHamsterMutation,
