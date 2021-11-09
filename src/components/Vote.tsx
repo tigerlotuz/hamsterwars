@@ -61,7 +61,7 @@ const Vote = () => {
               <Card className="hamster-card">
                 <CardMedia
                   component="img"
-                  height={300}
+                  height={250}
                   src={
                     w.newImg
                       ? w.newImg

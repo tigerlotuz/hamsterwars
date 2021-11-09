@@ -13,7 +13,12 @@ const Start = () => {
   const { data: hamster, isFetching } = useGetCutestHamsterQuery();
   let history = useHistory();
 
-  if (isFetching) return <h2>Loading...</h2>;
+  if (isFetching)
+    return (
+      <Grid item xs={12} m={2}>
+        <Typography variant="h5">Loading..</Typography>
+      </Grid>
+    );
 
   return (
     <Grid container spacing={2} justifyContent="center">

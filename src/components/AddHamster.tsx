@@ -70,7 +70,7 @@ const AddHamster = () => {
   };
 
   return (
-    <Grid container spacing={1}>
+    <Grid container justifyContent="center" spacing={1}>
       <Grid item xs={12}>
         <Typography variant="h4" m={2}>
           Add New Hamster
@@ -102,18 +102,18 @@ const AddHamster = () => {
                 <TextFieldWrapper name="newImg" label="Bild url" />
               </Grid>
 
-              <Grid item xs={12}>
+              <Grid item xs={12} m={5}>
                 <Button
                   onClick={() => history.push("/gallery")}
                   variant="outlined"
-                  sx={{ margin: "2em 0" }}
+                  sx={{ margin: "0.25em 0.25em" }}
                 >
                   CANCEL
                 </Button>
                 <Button
                   type="submit"
                   variant="contained"
-                  sx={{ margin: "2em 0" }}
+                  sx={{ margin: "0.25em 0.25em" }}
                 >
                   ADD HAMSTER
                 </Button>

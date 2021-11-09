@@ -59,7 +59,7 @@ const Gallery = () => {
         </Grid>
       ))}
 
-      <Grid container justifyContent="center">
+      <Grid container justifyContent="center" sx={{ margin: "1.5em 0" }}>
         <Grid
           item
           xs={12}
