@@ -122,12 +122,12 @@ router.get("/matchWinners/:id", async (req, res) => {
     let array = await getAllMatches();
 
     const hasMinOneWin = await array.some(
-      (match) => match.winnerId == req.params.id
+      (match) => match.winnerId === req.params.id
     );
 
     if (hasMinOneWin === true) {
       const winnerArray = array.filter((match) => {
-        return match.winnerId == req.params.id;
+        return match.winnerId === req.params.id;
       });
       res.status(200).send(winnerArray);
     } else {
