@@ -13,7 +13,12 @@ const Gallery = () => {
   const { data = [], isFetching } = useGetAllHamstersQuery();
   let history = useHistory();
 
-  if (isFetching) return <h2>Loading...</h2>;
+  if (isFetching)
+    return (
+      <Grid item xs={12} m={2}>
+        <Typography variant="h5">Loading..</Typography>
+      </Grid>
+    );
 
   const backToTop = () => {
     window[`scrollTo`]({ top: 0, behavior: `smooth` });
@@ -41,6 +46,10 @@ const Gallery = () => {
                 }
                 alt={hamster.name}
                 loading="lazy"
+                sx={{
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
               />
               <CardContent>
                 <Typography variant="h5">{hamster.name}</Typography>

@@ -28,8 +28,12 @@ const Vote = () => {
     }
   }, [warrior2, warrior1, refetch]);
 
-  if (isFetching1) return <h2>Loading...</h2>;
-  if (isFetching2) return <h2>Loading...</h2>;
+  if (isFetching1 || isFetching2)
+    return (
+      <Grid item xs={12} m={2}>
+        <Typography variant="h5">Loading..</Typography>
+      </Grid>
+    );
 
   return (
     <Grid container justifyContent="center" gap={2}>
@@ -57,7 +61,7 @@ const Vote = () => {
               <Card className="hamster-card">
                 <CardMedia
                   component="img"
-                  height={400}
+                  height={300}
                   src={
                     w.newImg
                       ? w.newImg
@@ -66,9 +70,6 @@ const Vote = () => {
                   alt={w.name}
                   loading="lazy"
                   sx={{
-                    height: "auto",
-                    maxWidth: "100%",
-                    display: "block",
                     marginLeft: "auto",
                     marginRight: "auto",
                   }}
