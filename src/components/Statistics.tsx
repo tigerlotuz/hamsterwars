@@ -30,19 +30,22 @@ const Statistics = () => {
 
   return (
     <Grid container justifyContent="center">
+      <Grid item xs={12} m={2}>
+        <Typography variant="h2" m={2}>
+          Statistics
+        </Typography>
+      </Grid>
       <Grid container justifyContent="center" gap={2}>
-        <Grid item xs={12} m={2}>
-          <Typography variant="h4" m={2}>
-            Top 5 Winners
-          </Typography>
+        <Grid item xs={12} m={3}>
+          <Typography variant="h5">Top 5 Winners</Typography>
         </Grid>
 
         {WinnersData?.map((winner) => (
-          <Grid item xs={12} sm={3} md={3} lg={2} xl={2} key={winner.id}>
-            <Card className="hamster-card">
+          <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={winner.id}>
+            <Card>
               <CardMedia
                 component="img"
-                height={200}
+                height={260}
                 src={
                   winner.newImg
                     ? winner.newImg
@@ -65,17 +68,15 @@ const Statistics = () => {
 
       <Grid container justifyContent="center" gap={2}>
         <Grid item xs={12} m={3}>
-          <Typography variant="h4" m={2}>
-            Top 5 Losers
-          </Typography>
+          <Typography variant="h5">Top 5 Losers</Typography>
         </Grid>
 
         {LosersData?.map((loser) => (
-          <Grid item xs={12} sm={3} md={3} lg={2} xl={2} key={loser.id}>
-            <Card className="hamster-card">
+          <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={loser.id}>
+            <Card>
               <CardMedia
                 component="img"
-                height={200}
+                height={260}
                 src={
                   loser.newImg
                     ? loser.newImg
