@@ -26,7 +26,7 @@ const Gallery = () => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12}>
+      <Grid item xs={12} m={2}>
         <Typography variant="h2" m={2}>
           The Hamsters
         </Typography>

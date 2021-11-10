@@ -21,8 +21,8 @@ const Start = () => {
     );
 
   return (
-    <Grid container spacing={2} justifyContent="center">
-      <Grid item xs={12}>
+    <Grid container justifyContent="center">
+      <Grid item xs={12} m={2}>
         <Typography variant="h2" m={2}>
           Hamster Wars
         </Typography>
