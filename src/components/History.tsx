@@ -1,12 +1,5 @@
-import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
-import {
-  Grid,
-  Typography,
-  Card,
-  CardMedia,
-  CardContent,
-  Button,
-} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { Grid, Typography, Card, CardMedia, Button, Box } from "@mui/material";
 import {
   useGetAllMatchesQuery,
   useDeleteOneMatchMutation,
@@ -60,81 +53,92 @@ const History = () => {
 
       {MatchesData ? (
         MatchesData.map((m) => (
-          <Grid
-            container
-            gap={2}
+          <Card
             key={m.id}
             sx={{
-              position: "relative",
-              border: " 1px solid black",
               display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-evenly",
+              position: "relative",
+              boxShadow: 3,
+              padding: "1em",
             }}
           >
-            <Button
-              variant="contained"
+            <CloseIcon
+              className="delete-icon"
               onClick={deleteMatchFunc}
-              sx={{ position: "absolute", top: "8px", right: "8px" }}
-            >
-              <DeleteForeverRoundedIcon />
-            </Button>
+              color="secondary"
+              fontSize="small"
+              sx={{
+                position: "absolute",
+                top: ".5em",
+                right: ".5em",
+                zIndex: "1",
+                backgroundColor: "#333d79ff",
+                borderRadius: "15%",
+              }}
+            ></CloseIcon>
+
             {HamsterData?.map((h) => {
               if (h.id === m.winnerId) {
                 return (
-                  <Grid item xs={5} key={h.id + m.winnerId}>
-                    <Card className="hamster-card">
-                      <CardMedia
-                        component="img"
-                        height={200}
-                        src={
-                          h.newImg
-                            ? h.newImg
-                            : `https://tigerlotuz-hamsterwars.herokuapp.com/img/${h.imgName}`
-                        }
-                        alt={h.name}
-                        loading="lazy"
-                        sx={{
-                          marginLeft: "auto",
-                          marginRight: "auto",
-                        }}
-                      />
-                      <CardContent>
-                        <Typography variant="h6">Winner: {h.name}</Typography>
-                      </CardContent>
-                    </Card>
-                  </Grid>
+                  <Box key={h.id} sx={{ position: "relative" }}>
+                    <Typography
+                      variant="subtitle1"
+                      color="secondary"
+                      sx={{
+                        position: "absolute",
+                        width: "100%",
+                        top: "75%",
+                        left: "0%",
+                        backgroundColor: "rgba(51, 61, 121, 0.6)",
+                      }}
+                    >
+                      Winner: {h.name}
+                    </Typography>
+                    <CardMedia
+                      component="img"
+                      sx={{ width: 150, height: 150 }}
+                      src={
+                        h.newImg
+                          ? h.newImg
+                          : `https://tigerlotuz-hamsterwars.herokuapp.com/img/${h.imgName}`
+                      }
+                      alt={h.name}
+                    />
+                  </Box>
                 );
               } else if (h.id === m.loserId) {
                 return (
-                  <Grid item xs={5} key={h.id + m.loserId}>
-                    <Card className="hamster-card">
-                      <CardMedia
-                        component="img"
-                        height={200}
-                        src={
-                          h.newImg
-                            ? h.newImg
-                            : `https://tigerlotuz-hamsterwars.herokuapp.com/img/${h.imgName}`
-                        }
-                        alt={h.name}
-                        loading="lazy"
-                        sx={{
-                          marginLeft: "auto",
-                          marginRight: "auto",
-                        }}
-                      />
-                      <CardContent>
-                        <Typography variant="h6">Looser: {h.name}</Typography>
-                      </CardContent>
-                    </Card>
-                  </Grid>
+                  <Box key={h.id} sx={{ position: "relative" }}>
+                    <Typography
+                      variant="subtitle1"
+                      color="secondary"
+                      sx={{
+                        position: "absolute",
+                        width: "100%",
+                        top: "75%",
+                        left: "0%",
+                        backgroundColor: "rgba(51, 61, 121, 0.6)",
+                      }}
+                    >
+                      Looser: {h.name}
+                    </Typography>
+                    <CardMedia
+                      component="img"
+                      sx={{ width: 150, height: 150 }}
+                      src={
+                        h.newImg
+                          ? h.newImg
+                          : `https://tigerlotuz-hamsterwars.herokuapp.com/img/${h.imgName}`
+                      }
+                      alt={h.name}
+                    />
+                  </Box>
                 );
               } else {
                 return null;
               }
             })}
-          </Grid>
+          </Card>
         ))
       ) : (
         <Grid container justifyContent="center" spacing={2}>
@@ -143,6 +147,7 @@ const History = () => {
           </Grid>
         </Grid>
       )}
+
       <Grid container justifyContent="center" sx={{ margin: "1.5em 0" }}>
         <Grid
           item
