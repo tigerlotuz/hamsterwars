@@ -1,11 +1,4 @@
-import {
-  Grid,
-  Typography,
-  Button,
-  Card,
-  CardMedia,
-  CardContent,
-} from "@mui/material";
+import { Grid, Typography, Button, Card, CardMedia } from "@mui/material";
 import { useGetCutestHamsterQuery } from "../features/hamsterApi";
 import { useHistory } from "react-router-dom";
 
@@ -23,40 +16,50 @@ const Start = () => {
   return (
     <Grid container justifyContent="center">
       <Grid item xs={12} m={2}>
-        <Typography variant="h2" m={2}>
+        <Typography variant="h2" mt={2} mb={2}>
           Hamster Wars
         </Typography>
-        <Typography variant="h6" m={2}>
-          The war over who is the cutest hamster has just begun, vote for your
-          favorite!{" "}
-        </Typography>
-      </Grid>
-      <Grid item xs={12}>
-        <Button onClick={() => history.push("/vote")} variant="contained">
-          VOTE
-        </Button>
       </Grid>
 
       {hamster && (
-        <Grid item xs={12} sm={8} md={6} lg={4} xl={3} key={hamster[0].id}>
-          <Card>
-            <CardMedia
-              component="img"
-              height={350}
-              src={
-                hamster[0].newImg
-                  ? hamster[0].newImg
-                  : `https://tigerlotuz-hamsterwars.herokuapp.com/img/${hamster[0].imgName}`
-              }
-              alt={hamster[0].name}
-              loading="lazy"
-            />
-            <CardContent>
-              <Typography variant="h6">
-                {hamster[0].name} is currently the winner
-              </Typography>
-            </CardContent>
-          </Card>
+        <Grid item xs={12} sm={8} md={6} lg={5} xl={3} key={hamster[0].id}>
+          <Grid item xs={12}>
+            <Typography variant="h4" m={2}>
+              {hamster[0].name} is the leader
+            </Typography>
+          </Grid>
+          <div className="cutest">
+            <Card>
+              <CardMedia
+                component="img"
+                height={400}
+                src={
+                  hamster[0].newImg
+                    ? hamster[0].newImg
+                    : `https://tigerlotuz-hamsterwars.herokuapp.com/img/${hamster[0].imgName}`
+                }
+                alt={hamster[0].name}
+                loading="lazy"
+                sx={{
+                  maxWidth: "100%",
+                  objectFit: "cover",
+                }}
+              />
+            </Card>
+          </div>
+          <Grid item xs={12} mt={2} mb={2}>
+            <Typography variant="h6">
+              The war of the cutest hamster has just begun..
+            </Typography>
+            <Typography variant="h6">
+              Go to fightpage to vote for your favorite hamster
+            </Typography>
+          </Grid>
+          <Grid item xs={12} m={4}>
+            <Button onClick={() => history.push("/fight")} variant="contained">
+              Bring me to war
+            </Button>
+          </Grid>
         </Grid>
       )}
     </Grid>
