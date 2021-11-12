@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import type { Hamster, HamsterUpdate } from '../types/Hamster'
+import type { Hamster, HamsterUpdate, HamsterCreate } from '../types/Hamster'
 
 const baseUrl = 'https://tigerlotuz-hamsterwars.herokuapp.com'
 
@@ -23,7 +23,7 @@ export const hamsterApi = createApi({
         getCutestHamster: builder.query<Hamster[], void>({
             query: () => `/hamsters/cutest`,
         }),
-        addOneHamster: builder.mutation<Hamster, Hamster>({
+        addOneHamster: builder.mutation<Hamster, HamsterCreate>({
             query: (hamster) => ({
                 url: `/hamsters`,
                 method: 'POST',
@@ -37,11 +37,17 @@ export const hamsterApi = createApi({
                 body: hamster
             }),
         }),
-        deleteOneHamster: builder.mutation<Hamster, string>({
+        deleteOneHamster: builder.mutation<Hamster, any>({
             query: (id) => ({
                 url: `/hamsters/${id}`,
                 method: 'DELETE',
             }),
+        }),
+        getOneHamsterById: builder.mutation<Hamster, any>({
+            query: (id) => `/hamsters/${id}`,
+        }),
+        getOneRandomHamster: builder.mutation<Hamster, void>({
+            query: () => `/hamsters/random`,
         }),
     })
 })
@@ -53,5 +59,7 @@ export const {
     useGetCutestHamsterQuery,
     useAddOneHamsterMutation,
     useUpdateOneHamsterMutation,
-    useDeleteOneHamsterMutation
+    useDeleteOneHamsterMutation,
+    useGetOneHamsterByIdMutation,
+    useGetOneRandomHamsterMutation
 } = hamsterApi
