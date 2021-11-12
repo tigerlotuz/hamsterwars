@@ -4,15 +4,9 @@ import {
   useGetAllMatchesQuery,
   useDeleteOneMatchMutation,
 } from "../features/matchesApi";
-import { useParams } from "react-router-dom";
 import { useGetAllHamstersQuery } from "../features/hamsterApi";
 
-interface RouteParams {
-  id: string;
-}
-
 const History = () => {
-  const { id } = useParams<RouteParams>();
   const { data: MatchesData = [], isFetching: isFetchingMatches } =
     useGetAllMatchesQuery();
   const { data: HamsterData = [], isFetching: isFetchingHamsters } =
@@ -20,7 +14,7 @@ const History = () => {
   const [deleteMatch] = useDeleteOneMatchMutation();
   const { refetch } = useGetAllMatchesQuery();
 
-  const deleteMatchFunc = () => {
+  const deleteMatchFunc = (id: any) => {
     deleteMatch(id)
       .unwrap()
       .then((res) => {
@@ -64,7 +58,7 @@ const History = () => {
           >
             <CloseIcon
               className="delete-icon"
-              onClick={deleteMatchFunc}
+              onClick={() => deleteMatchFunc(m.id)}
               color="secondary"
               fontSize="small"
               sx={{
