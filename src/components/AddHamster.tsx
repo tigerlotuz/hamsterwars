@@ -2,7 +2,7 @@ import { Grid, Button, Typography } from "@mui/material";
 import { Formik, Form } from "formik";
 import * as yup from "yup";
 import { useAddOneHamsterMutation } from "../features/hamsterApi";
-import { Hamster } from "../types/Hamster";
+import { HamsterCreate } from "../types/Hamster";
 import TextFieldWrapper from "./TextFieldWrapper";
 import { useHistory } from "react-router-dom";
 import { useGetAllHamstersQuery } from "../features/hamsterApi";
@@ -53,7 +53,7 @@ const AddHamster = () => {
   let history = useHistory();
 
   const addHamsterFunc = (values: initialValues) => {
-    const newHamster: Hamster = {
+    const newHamster: HamsterCreate = {
       ...values,
       age: Number(values.age),
     };
