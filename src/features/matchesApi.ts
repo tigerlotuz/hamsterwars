@@ -28,7 +28,7 @@ export const matchesApi = createApi({
                 method: 'DELETE',
             }),
         }),
-        getOneMatchWinner: builder.query<Match, string>({
+        getOneMatchWinner: builder.query<Match[], string>({
             query: (id) => `/matchWinners/${id}`,
         }),
         getAllWinners: builder.query<Hamster[], void>({
@@ -36,6 +36,9 @@ export const matchesApi = createApi({
         }),
         getAllLosers: builder.query<Hamster[], void>({
             query: () => `/losers`,
+        }),
+        getDefeatedHamsters: builder.mutation<Match[], string>({
+            query: (id) => `/matchWinners/${id}`,
         }),
     })
 })
@@ -47,5 +50,6 @@ export const {
     useGetOneMatchWinnerQuery,
     useGetAllWinnersQuery,
     useGetAllLosersQuery,
+    useGetDefeatedHamstersMutation
 
 } = matchesApi
