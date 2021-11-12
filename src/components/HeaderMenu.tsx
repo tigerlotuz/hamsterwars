@@ -46,7 +46,7 @@ const HeaderMenu = () => {
         <Link to="/"> Start </Link>
       </MenuItem>
       <MenuItem onClick={handleMobileMenuClose}>
-        <Link to="/vote"> Vote </Link>
+        <Link to="/fight"> Fight </Link>
       </MenuItem>
       <MenuItem onClick={handleMobileMenuClose}>
         <Link to="/gallery"> Gallery </Link>
@@ -71,7 +71,7 @@ const HeaderMenu = () => {
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <nav className="header-nav">
               <Link to="/"> Start </Link>
-              <Link to="/vote"> Vote </Link>
+              <Link to="/fight"> Fight </Link>
               <Link to="/gallery"> Gallery </Link>
               <Link to="/statistics"> Statistics </Link>
               <Link to="/history"> History</Link>
