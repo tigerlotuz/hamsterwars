@@ -29,17 +29,21 @@ const FORM_VALIDATION = yup.object().shape({
     .required("Du måste ange en ålder"),
   loves: yup.string().required("Du måste ange ett intresse"),
   favFood: yup.string().required("Du måste ange en maträtt"),
-  newImg: yup
+  imgName: yup
     .string()
     .url("Du måste ange en giltig URL")
     .required("Du måste ange en bild URL"),
+  // newImg: yup
+  //   .string()
+  //   .url("Du måste ange en giltig URL")
+  //   .required("Du måste ange en bild URL"),
 });
 
 const INITIAL_FORM_STATE: initialValues = {
   name: "",
   age: "",
   imgName: "",
-  newImg: "",
+  // newImg: "",
   favFood: "",
   loves: "",
   games: 0,
@@ -99,7 +103,7 @@ const AddHamster = () => {
                 <TextFieldWrapper name="favFood" label="Favoritmat" />
               </Grid>
               <Grid item xs={12}>
-                <TextFieldWrapper name="newImg" label="Bild url" />
+                <TextFieldWrapper name="imgName" label="Bild url" />
               </Grid>
 
               <Grid item xs={12} m={5}>
