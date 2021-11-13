@@ -39,11 +39,10 @@ const Gallery = () => {
               <CardMedia
                 component="img"
                 height={260}
-                src={
-                  hamster.newImg
-                    ? hamster.newImg
-                    : `https://tigerlotuz-hamsterwars.herokuapp.com/img/${hamster.imgName}`
-                }
+                src={hamster.imgName}
+                // src={
+                //   hamster.newImg ? hamster.newImg : `/img/${hamster.imgName}`
+                // }
                 alt={hamster.name}
                 loading="lazy"
                 sx={{
@@ -59,10 +58,11 @@ const Gallery = () => {
         </Grid>
       ))}
 
-      <Grid container justifyContent="center" sx={{ margin: "1.5em 0" }}>
+      <Grid container justifyContent="center">
         <Grid
           item
           xs={12}
+          m={2}
           sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
         >
           <Button
@@ -70,13 +70,13 @@ const Gallery = () => {
             variant="contained"
             sx={{ margin: "0.5em 0.5em" }}
           >
-            To Top
+            Upp
           </Button>
           <Button
             onClick={() => history.push("/addhamster")}
             variant="contained"
           >
-            Add Hamster
+            Lägg till hamster
           </Button>
         </Grid>
       </Grid>
