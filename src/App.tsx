@@ -8,7 +8,7 @@ import HeaderMenu from "./components/HeaderMenu";
 import History from "./components/History";
 import Start from "./components/Start";
 import Statistics from "./components/Statistics";
-import Fight from "./components/Fight";
+import Compete from "./components/Compete";
 import AddHamster from "./components/AddHamster";
 import HamsterInfo from "./components/HamsterInfo";
 
@@ -33,8 +33,8 @@ function App() {
             <Route path="/" exact>
               <Start />
             </Route>
-            <Route path="/fight">
-              <Fight />
+            <Route path="/compete">
+              <Compete />
             </Route>
             <Route path="/gallery/:id">
               <HamsterInfo />
