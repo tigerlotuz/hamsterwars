@@ -6,9 +6,6 @@
 ##### Startsida
 Här visas den hamster som leder tävlingen för tillfället, det finns en enkel beskrivning på hur man tävlar/använder appen, samt en knapp med en genväg till tävlingen. Det finns även en navigationsmeny längst upp på sidan som följer med varje sida.
 
-Om det av någon anledning inte går att nå backend-servern så ska du visa ett *användarvänligt felmeddelande* här. Användaren ska också få möjligheten att försöka igen.
-
-
 ##### Tävla
 Här visas två slumpade hamstrar, man klickar på den man tycker är sötast och då kommer tävlingsresultatet upp samt en knapp för att starta en ny omgång.
 När man klickar på den sötaste hamstern så skapas en ett nytt matchobject i databasen och uppdaterar hamsterobjecten med tävlingsresultatet.
