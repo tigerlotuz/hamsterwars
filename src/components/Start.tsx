@@ -29,11 +29,6 @@ const Start = () => {
                 component="img"
                 height={400}
                 src={hamster[0].imgName}
-                // src={
-                //   hamster[0].newImg
-                //     ? hamster[0].newImg
-                //     : `/img/${hamster[0].imgName}`
-                // }
                 alt={hamster[0].name}
                 loading="lazy"
                 sx={{
@@ -53,7 +48,7 @@ const Start = () => {
             }}
           >
             <Typography variant="h5" m={2}>
-              "Cutest Hamster" just nu:
+              "Cutest Hamster":
             </Typography>
             <Typography variant="h4" m={2}>
               {hamster[0].name}

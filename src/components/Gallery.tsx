@@ -40,9 +40,6 @@ const Gallery = () => {
                 component="img"
                 height={260}
                 src={hamster.imgName}
-                // src={
-                //   hamster.newImg ? hamster.newImg : `/img/${hamster.imgName}`
-                // }
                 alt={hamster.name}
                 loading="lazy"
                 sx={{

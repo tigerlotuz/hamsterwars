@@ -52,8 +52,6 @@ const HamsterInfo = () => {
 
         let defeatedHamsters: Hamster[] = [];
 
-        console.log("number of defated hamsters " + wins.length);
-
         if (wins && wins.length > 0) {
           wins.forEach(async (win) => {
             const hamster = await getOneHamsterById(win.loserId).unwrap();
@@ -65,7 +63,6 @@ const HamsterInfo = () => {
         console.log(error);
       }
     };
-    console.log("useEffect");
     getWins();
   }, [getOneHamsterById, getDefeatedHamsters, id]);
 
@@ -111,12 +108,12 @@ const HamsterInfo = () => {
                   <Typography variant="h6">Intressen: {data.loves}</Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <Typography variant="h6">
+                  <Typography variant="h6" mb={2}>
                     Favoritmat: {data.favFood}
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <Typography variant="h6">Fighter: {data.games}</Typography>
+                  <Typography variant="h6">Tävlingar: {data.games}</Typography>
                 </Grid>
                 <Grid item xs={12}>
                   <Typography variant="h6">Segrar: {data.wins}</Typography>
@@ -137,7 +134,7 @@ const HamsterInfo = () => {
                   ))
                 ) : (
                   <Grid item xs={12}>
-                    <Typography variant="h6">{id ? id : "Ingen.."}</Typography>
+                    <Typography variant="h6">{"Ingen.."}</Typography>
                   </Grid>
                 )}
               </CardContent>
@@ -159,14 +156,14 @@ const HamsterInfo = () => {
           onClick={deleteHamsterFunc}
           sx={{ margin: "2em 0" }}
         >
-          DELETE
+          Radera
         </Button>
         <Button
           variant="contained"
           onClick={() => history.push("/gallery")}
           sx={{ margin: "0.5em 0.5em" }}
         >
-          GO BACK
+          Tillbaka
         </Button>
       </Grid>
     </Grid>

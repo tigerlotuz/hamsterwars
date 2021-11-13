@@ -149,9 +149,6 @@ const Fight = () => {
                 component="img"
                 height={250}
                 src={hamster1.imgName}
-                // src={
-                //   hamster1.newImg ? hamster1.newImg : `/img/${hamster1.imgName}`
-                // }
                 alt={hamster1.name}
                 loading="lazy"
                 sx={{
@@ -200,9 +197,6 @@ const Fight = () => {
                 component="img"
                 height={250}
                 src={hamster2.imgName}
-                // src={
-                //   hamster2.newImg ? hamster2.newImg : `/img/${hamster2.imgName}`
-                // }
                 alt={hamster2.name}
                 loading="lazy"
                 sx={{

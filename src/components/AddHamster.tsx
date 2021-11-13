@@ -11,7 +11,6 @@ interface initialValues {
   name: string;
   age: string;
   imgName: string;
-  newImg?: string;
   favFood: string;
   loves: string;
   games: number;
@@ -33,17 +32,12 @@ const FORM_VALIDATION = yup.object().shape({
     .string()
     .url("Du måste ange en giltig URL")
     .required("Du måste ange en bild URL"),
-  // newImg: yup
-  //   .string()
-  //   .url("Du måste ange en giltig URL")
-  //   .required("Du måste ange en bild URL"),
 });
 
 const INITIAL_FORM_STATE: initialValues = {
   name: "",
   age: "",
   imgName: "",
-  // newImg: "",
   favFood: "",
   loves: "",
   games: 0,
@@ -112,14 +106,14 @@ const AddHamster = () => {
                   variant="outlined"
                   sx={{ margin: "0.25em 0.25em" }}
                 >
-                  CANCEL
+                  Tillbaka
                 </Button>
                 <Button
                   type="submit"
                   variant="contained"
                   sx={{ margin: "0.25em 0.25em" }}
                 >
-                  ADD HAMSTER
+                  Lägg till
                 </Button>
               </Grid>
             </Grid>

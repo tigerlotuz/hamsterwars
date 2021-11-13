@@ -86,13 +86,12 @@ const History = () => {
                         backgroundColor: "rgba(51, 61, 121, 0.6)",
                       }}
                     >
-                      Winner: {h.name}
+                      Vinnare: {h.name}
                     </Typography>
                     <CardMedia
                       component="img"
                       sx={{ width: 150, height: 150 }}
                       src={h.imgName}
-                      // src={h.newImg ? h.newImg : `/img/${h.imgName}`}
                       alt={h.name}
                     />
                   </Box>
@@ -111,13 +110,12 @@ const History = () => {
                         backgroundColor: "rgba(51, 61, 121, 0.6)",
                       }}
                     >
-                      Loser: {h.name}
+                      Förlorare: {h.name}
                     </Typography>
                     <CardMedia
                       component="img"
                       sx={{ width: 150, height: 150 }}
                       src={h.imgName}
-                      // src={h.newImg ? h.newImg : `/img/${h.imgName}`}
                       alt={h.name}
                     />
                   </Box>
@@ -148,7 +146,7 @@ const History = () => {
             variant="contained"
             sx={{ margin: "0.5em 0.5em" }}
           >
-            To Top
+            upp
           </Button>
         </Grid>
       </Grid>

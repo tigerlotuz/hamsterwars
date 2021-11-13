@@ -47,7 +47,6 @@ const Statistics = () => {
                 component="img"
                 height={260}
                 src={winner.imgName}
-                // src={winner.newImg ? winner.newImg : `/img/${winner.imgName}`}
                 alt={winner.name}
                 loading="lazy"
                 sx={{
@@ -67,9 +66,9 @@ const Statistics = () => {
                     alignItems: "center",
                   }}
                 >
-                  <Typography variant="h6">Wins: {winner.wins}</Typography>
+                  <Typography variant="h6">Segrar: {winner.wins}</Typography>
                   <Typography variant="h6">
-                    Defeats: {winner.defeats}
+                    Förluster: {winner.defeats}
                   </Typography>
                 </Grid>
               </CardContent>
@@ -90,7 +89,6 @@ const Statistics = () => {
                 component="img"
                 height={260}
                 src={loser.imgName}
-                // src={loser.newImg ? loser.newImg : `/img/${loser.imgName}`}
                 alt={loser.name}
                 loading="lazy"
                 sx={{
@@ -110,8 +108,10 @@ const Statistics = () => {
                     alignItems: "center",
                   }}
                 >
-                  <Typography variant="h6">Wins: {loser.wins}</Typography>
-                  <Typography variant="h6">Defeats: {loser.defeats}</Typography>
+                  <Typography variant="h6">Segrar: {loser.wins}</Typography>
+                  <Typography variant="h6">
+                    Förluster: {loser.defeats}
+                  </Typography>
                 </Grid>
               </CardContent>
             </Card>
@@ -131,7 +131,7 @@ const Statistics = () => {
             variant="contained"
             sx={{ margin: "0.5em 0.5em" }}
           >
-            To Top
+            upp
           </Button>
         </Grid>
       </Grid>
