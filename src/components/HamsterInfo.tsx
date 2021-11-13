@@ -1,9 +1,13 @@
+import { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import {
   useGetAllHamstersQuery,
   useGetOneHamsterQuery,
   useDeleteOneHamsterMutation,
+  useGetOneHamsterByIdMutation,
 } from "../features/hamsterApi";
+import { useGetDefeatedHamstersMutation } from "../features/matchesApi";
+
 import {
   Card,
   CardContent,
@@ -12,17 +16,21 @@ import {
   Typography,
   Button,
 } from "@mui/material";
+import { Hamster } from "../types/Hamster";
 
 interface RouteParams {
   id: string;
 }
 
 const HamsterInfo = () => {
+  let history = useHistory();
   const { id } = useParams<RouteParams>();
   const { data, isFetching } = useGetOneHamsterQuery(id);
   const [deleteHamster] = useDeleteOneHamsterMutation();
+  const [getOneHamsterById] = useGetOneHamsterByIdMutation();
+  const [getDefeatedHamsters] = useGetDefeatedHamstersMutation();
   const { refetch } = useGetAllHamstersQuery();
-  let history = useHistory();
+  const [hamstersDefeated, setHamstersDefeated] = useState<Hamster[]>([]);
 
   const deleteHamsterFunc = () => {
     deleteHamster(id)
@@ -37,7 +45,37 @@ const HamsterInfo = () => {
       });
   };
 
-  if (isFetching) return <h2>Loading...</h2>;
+  useEffect(() => {
+    const getWins = async () => {
+      try {
+        const wins = await getDefeatedHamsters(id).unwrap();
+
+        let defeatedHamsters: Hamster[] = [];
+
+        console.log("number of defated hamsters " + wins.length);
+
+        if (wins && wins.length > 0) {
+          wins.forEach(async (win) => {
+            const hamster = await getOneHamsterById(win.loserId).unwrap();
+            defeatedHamsters.push(hamster);
+            setHamstersDefeated(defeatedHamsters);
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    console.log("useEffect");
+    getWins();
+  }, [getOneHamsterById, getDefeatedHamsters, id]);
+
+  if (isFetching)
+    return (
+      <Grid item xs={12} m={2}>
+        <Typography variant="h5">Loading..</Typography>
+      </Grid>
+    );
+
   return (
     <Grid container justifyContent="center" gap={2}>
       <Grid item xs={12} m={2}>
@@ -53,11 +91,7 @@ const HamsterInfo = () => {
               <CardMedia
                 component="img"
                 height={400}
-                src={
-                  data.newImg
-                    ? data.newImg
-                    : `https://tigerlotuz-hamsterwars.herokuapp.com/img/${data.imgName}`
-                }
+                src={data.imgName}
                 alt={data.name}
                 loading="lazy"
               />
@@ -92,6 +126,20 @@ const HamsterInfo = () => {
                     Förluster: {data.defeats}
                   </Typography>
                 </Grid>
+                <Grid item xs={12} mt={3}>
+                  <Typography variant="h5">Besegrade Hamstrar</Typography>
+                </Grid>
+                {hamstersDefeated && hamstersDefeated.length > 0 ? (
+                  hamstersDefeated.map((hamster) => (
+                    <Grid item xs={12} key={hamster.id}>
+                      <Typography variant="h6">{hamster.name}</Typography>
+                    </Grid>
+                  ))
+                ) : (
+                  <Grid item xs={12}>
+                    <Typography variant="h6">{id ? id : "Ingen.."}</Typography>
+                  </Grid>
+                )}
               </CardContent>
             </Card>
           </Grid>
