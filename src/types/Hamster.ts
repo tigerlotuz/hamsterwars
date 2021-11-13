@@ -4,7 +4,6 @@ export interface Hamster {
     name: string
     age: number
     imgName: string
-    newImg?: string
     favFood: string
     loves: string
     games: number
@@ -17,7 +16,6 @@ export interface HamsterCreate {
     name: string
     age: number
     imgName: string
-    newImg?: string
     favFood: string
     loves: string
     games: number
@@ -30,4 +28,3 @@ export interface HamsterUpdate {
     id: string
     hamster: Hamster
 }
-
