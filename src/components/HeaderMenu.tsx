@@ -43,19 +43,19 @@ const HeaderMenu = () => {
       onClose={handleMobileMenuClose}
     >
       <MenuItem onClick={handleMobileMenuClose}>
-        <Link to="/"> Start </Link>
+        <Link to="/"> Startsida </Link>
       </MenuItem>
       <MenuItem onClick={handleMobileMenuClose}>
-        <Link to="/fight"> Fight </Link>
+        <Link to="/compete"> Tävla </Link>
       </MenuItem>
       <MenuItem onClick={handleMobileMenuClose}>
-        <Link to="/gallery"> Gallery </Link>
+        <Link to="/gallery"> Galleri </Link>
       </MenuItem>
       <MenuItem onClick={handleMobileMenuClose}>
-        <Link to="/statistics"> Statistics </Link>
+        <Link to="/statistics"> Statistik </Link>
       </MenuItem>
       <MenuItem onClick={handleMobileMenuClose}>
-        <Link to="/history"> History</Link>
+        <Link to="/history"> Historik</Link>
       </MenuItem>
     </Menu>
   );
@@ -70,11 +70,11 @@ const HeaderMenu = () => {
 
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <nav className="header-nav">
-              <Link to="/"> Start </Link>
-              <Link to="/fight"> Fight </Link>
-              <Link to="/gallery"> Gallery </Link>
-              <Link to="/statistics"> Statistics </Link>
-              <Link to="/history"> History</Link>
+              <Link to="/"> Startsida </Link>
+              <Link to="/compete"> Tävla </Link>
+              <Link to="/gallery"> Galleri </Link>
+              <Link to="/statistics"> Statistik </Link>
+              <Link to="/history"> Historik</Link>
             </nav>
           </Box>
 
