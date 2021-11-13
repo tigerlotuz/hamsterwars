@@ -2,6 +2,7 @@ const hamsterObject = {
   name: "name",
   age: "age",
   imgName: "imgName",
+  newImg: "newImg",
   favFood: "favFood",
   loves: "loves",
   games: "games",
@@ -15,7 +16,6 @@ function isHamstersObject(object) {
   }
   for (const key of Object.keys(hamsterObject)) {
     if (key in object) {
-      return true;
     } else {
       return false;
     }
@@ -24,6 +24,7 @@ function isHamstersObject(object) {
   if (containsHamsterKeys(object)) {
     return true;
   }
+  return false;
 }
 
 function containsHamsterKeys(object) {
@@ -32,12 +33,13 @@ function containsHamsterKeys(object) {
   }
 
   for (const key of Object.keys(object)) {
-    if (key in hamsterObject) {
-      return true;
+    if (key in hamsterObject || key === "id") {
     } else {
+      console.log("key not in hamster object", key);
       return false;
     }
   }
+  return true;
 }
 
 const matchObject = {
@@ -51,14 +53,13 @@ function isMatchObject(object) {
   }
   for (const key of Object.keys(matchObject)) {
     if (key in object) {
-      return true;
     } else {
       return false;
     }
   }
-
-  if (containsMatchKeys(object)) {
-    return true;
-  }
+  return true;
+  // if (containsMatchKeys(object)) {
+  //   return true;
+  // }
 }
 module.exports = { isHamstersObject, containsHamsterKeys, isMatchObject };
