@@ -46,11 +46,8 @@ const Statistics = () => {
               <CardMedia
                 component="img"
                 height={260}
-                src={
-                  winner.newImg
-                    ? winner.newImg
-                    : `https://tigerlotuz-hamsterwars.herokuapp.com/img/${winner.imgName}`
-                }
+                src={winner.imgName}
+                // src={winner.newImg ? winner.newImg : `/img/${winner.imgName}`}
                 alt={winner.name}
                 loading="lazy"
                 sx={{
@@ -59,7 +56,22 @@ const Statistics = () => {
                 }}
               />
               <CardContent>
-                <Typography variant="h5">{winner.name}</Typography>
+                <Typography variant="h5" mb={2}>
+                  {winner.name}
+                </Typography>
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography variant="h6">Wins: {winner.wins}</Typography>
+                  <Typography variant="h6">
+                    Defeats: {winner.defeats}
+                  </Typography>
+                </Grid>
               </CardContent>
             </Card>
           </Grid>
@@ -77,11 +89,8 @@ const Statistics = () => {
               <CardMedia
                 component="img"
                 height={260}
-                src={
-                  loser.newImg
-                    ? loser.newImg
-                    : `https://tigerlotuz-hamsterwars.herokuapp.com/img/${loser.imgName}`
-                }
+                src={loser.imgName}
+                // src={loser.newImg ? loser.newImg : `/img/${loser.imgName}`}
                 alt={loser.name}
                 loading="lazy"
                 sx={{
@@ -90,17 +99,31 @@ const Statistics = () => {
                 }}
               />
               <CardContent>
-                <Typography variant="h5">{loser.name}</Typography>
+                <Typography variant="h5" mb={2}>
+                  {loser.name}
+                </Typography>
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography variant="h6">Wins: {loser.wins}</Typography>
+                  <Typography variant="h6">Defeats: {loser.defeats}</Typography>
+                </Grid>
               </CardContent>
             </Card>
           </Grid>
         ))}
       </Grid>
 
-      <Grid container justifyContent="center" sx={{ margin: "1.5em 0" }}>
+      <Grid container justifyContent="center">
         <Grid
           item
           xs={12}
+          m={2}
           sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
         >
           <Button
