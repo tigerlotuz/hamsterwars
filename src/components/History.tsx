@@ -91,11 +91,8 @@ const History = () => {
                     <CardMedia
                       component="img"
                       sx={{ width: 150, height: 150 }}
-                      src={
-                        h.newImg
-                          ? h.newImg
-                          : `https://tigerlotuz-hamsterwars.herokuapp.com/img/${h.imgName}`
-                      }
+                      src={h.imgName}
+                      // src={h.newImg ? h.newImg : `/img/${h.imgName}`}
                       alt={h.name}
                     />
                   </Box>
@@ -114,16 +111,13 @@ const History = () => {
                         backgroundColor: "rgba(51, 61, 121, 0.6)",
                       }}
                     >
-                      Looser: {h.name}
+                      Loser: {h.name}
                     </Typography>
                     <CardMedia
                       component="img"
                       sx={{ width: 150, height: 150 }}
-                      src={
-                        h.newImg
-                          ? h.newImg
-                          : `https://tigerlotuz-hamsterwars.herokuapp.com/img/${h.imgName}`
-                      }
+                      src={h.imgName}
+                      // src={h.newImg ? h.newImg : `/img/${h.imgName}`}
                       alt={h.name}
                     />
                   </Box>
@@ -142,10 +136,11 @@ const History = () => {
         </Grid>
       )}
 
-      <Grid container justifyContent="center" sx={{ margin: "1.5em 0" }}>
+      <Grid container justifyContent="center">
         <Grid
           item
           xs={12}
+          m={2}
           sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
         >
           <Button
