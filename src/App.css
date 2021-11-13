@@ -70,7 +70,8 @@ a {
   transform: scale(1.2);
   cursor: pointer;
 }
-.cutest {
+.cutest,
+.winner {
   position: relative;
   background-image: radial-gradient(
     farthest-corner at 34px 14px,
@@ -127,4 +128,7 @@ a {
   100% {
     top: 0;
   }
+}
+.loser {
+  filter: grayscale(100%);
 }
