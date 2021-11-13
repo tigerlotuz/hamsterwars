@@ -1,46 +1,28 @@
-# Getting Started with Create React App
+# HAMSTERWARS frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
++ Backend: REST API med Node.js, Express och Firestore
++ Frontend: web app med React och TypeScript
 
-## Available Scripts
+##### Startsida
+Här visas den hamster som leder tävlingen för tillfället, det finns en enkel beskrivning på hur man tävlar/använder appen, samt en knapp med en genväg till tävlingen. Det finns även en navigationsmeny längst upp på sidan som följer med varje sida.
 
-In the project directory, you can run:
+Om det av någon anledning inte går att nå backend-servern så ska du visa ett *användarvänligt felmeddelande* här. Användaren ska också få möjligheten att försöka igen.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+##### Tävla
+Här visas två slumpade hamstrar, man klickar på den man tycker är sötast och då kommer tävlingsresultatet upp samt en knapp för att starta en ny omgång.
+När man klickar på den sötaste hamstern så skapas en ett nytt matchobject i databasen och uppdaterar hamsterobjecten med tävlingsresultatet.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+##### Galleri
+Här visas alla hamstrar i ett css grid (mui), här finns en knapp där man kommer till ett formulär (formik) så att man kan lägga till en egen hamster, formuläret använder validering (yup). På galleriet kan man även klicka på en hamster och då får man upp all info om den (även vilka hamstrar den har besegrat), samt att man kan radera den.
 
-### `npm test`
+##### Statistik
+Här syns top-5 vinnande hamstrar och top-5 förlorande hamstrar.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##### Historik
+Här visas resultatet (cards med vinnare och förlorare) från alla matcher.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Level ups
+- Animationer (bouncing 404, shine on cutest and winner)
+- Redux och Redux Toolkit.
+- React Router
