@@ -132,7 +132,7 @@ const Fight = () => {
           gap={2}
           sx={{ position: "relative" }}
         >
-          <Grid item xs={5} sm={5}>
+          <Grid item xs={5} sm={5} md={5} lg={4} xl={3}>
             <Card
               className={`${fightIsOver ? "" : "hamster-card"} ${
                 fightIsOver && hamster1.id === winnerHamster?.id ? "winner" : ""
@@ -147,11 +147,12 @@ const Fight = () => {
             >
               <CardMedia
                 component="img"
-                height={250}
+                height={350}
                 src={hamster1.imgName}
                 alt={hamster1.name}
                 loading="lazy"
                 sx={{
+                  objectPosition: "cover",
                   marginLeft: "auto",
                   marginRight: "auto",
                 }}
@@ -180,7 +181,7 @@ const Fight = () => {
               </Card>
             )}
           </Grid>
-          <Grid item xs={5} sm={5}>
+          <Grid item xs={5} sm={5} md={4} lg={4} xl={3}>
             <Card
               className={`${fightIsOver ? "" : "hamster-card"} ${
                 fightIsOver && hamster2.id === winnerHamster?.id ? "winner" : ""
@@ -195,7 +196,7 @@ const Fight = () => {
             >
               <CardMedia
                 component="img"
-                height={250}
+                height={350}
                 src={hamster2.imgName}
                 alt={hamster2.name}
                 loading="lazy"
