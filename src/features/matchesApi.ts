@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import type { Match } from '../types/Match'
 import type { Hamster } from '../types/Hamster'
 
-const baseUrl = 'https://tigerlotuz-hamsterwars.herokuapp.com'
+const baseUrl = ""
 
 export const matchesApi = createApi({
     reducerPath: 'matchesApi',
