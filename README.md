@@ -1,4 +1,4 @@
-# HAMSTERWARS frontend
+# HAMSTERWARS
 
 + Backend: REST API med Node.js, Express och Firestore
 + Frontend: web app med React och TypeScript
