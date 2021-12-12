@@ -83,7 +83,7 @@ const Statistics = () => {
         </Grid>
 
         {LosersData?.map((loser) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={loser.id}>
+          <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={loser.id} mb={6}>
             <Card>
               <CardMedia
                 component="img"

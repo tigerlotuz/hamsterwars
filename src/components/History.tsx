@@ -38,7 +38,7 @@ const History = () => {
   };
 
   return (
-    <Grid container justifyContent="center" gap={2}>
+    <Grid container justifyContent="center" gap={2} mb={6}>
       <Grid item xs={12} m={2}>
         <Typography variant="h2" m={2}>
           History

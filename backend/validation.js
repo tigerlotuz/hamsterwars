@@ -2,7 +2,6 @@ const hamsterObject = {
   name: "name",
   age: "age",
   imgName: "imgName",
-  newImg: "newImg",
   favFood: "favFood",
   loves: "loves",
   games: "games",

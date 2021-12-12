@@ -110,7 +110,7 @@ const Fight = () => {
   };
 
   return (
-    <Grid container justifyContent="center" spacing={2} gap={2}>
+    <Grid container justifyContent="center" gap={2} mb={8}>
       {!fightIsOver ? (
         <Grid item xs={12} m={2}>
           <Typography variant="h2" m={2}>
@@ -132,7 +132,7 @@ const Fight = () => {
           gap={2}
           sx={{ position: "relative" }}
         >
-          <Grid item xs={5} sm={5} md={5} lg={4} xl={3}>
+          <Grid item xs={5} sm={5} md={4} lg={4} xl={2}>
             <Card
               className={`${fightIsOver ? "" : "hamster-card"} ${
                 fightIsOver && hamster1.id === winnerHamster?.id ? "winner" : ""
@@ -140,7 +140,7 @@ const Fight = () => {
                 fightIsOver && hamster1.id === loserHamster?.id ? "loser" : ""
               }`}
               onClick={
-                hamster1 && hamster2
+                hamster1 && hamster2 && !fightIsOver
                   ? () => matchOver(hamster1, hamster2)
                   : undefined
               }
@@ -181,7 +181,7 @@ const Fight = () => {
               </Card>
             )}
           </Grid>
-          <Grid item xs={5} sm={5} md={4} lg={4} xl={3}>
+          <Grid item xs={5} sm={5} md={4} lg={4} xl={2}>
             <Card
               className={`${fightIsOver ? "" : "hamster-card"} ${
                 fightIsOver && hamster2.id === winnerHamster?.id ? "winner" : ""
@@ -189,7 +189,7 @@ const Fight = () => {
                 fightIsOver && hamster2.id === loserHamster?.id ? "loser" : ""
               }`}
               onClick={
-                hamster2 && hamster1
+                hamster2 && hamster1 && !fightIsOver
                   ? () => matchOver(hamster2, hamster1)
                   : undefined
               }
@@ -253,7 +253,11 @@ const Fight = () => {
           >
             Startsidan
           </Button>
-          <Button variant="contained" onClick={() => nextFight()}>
+          <Button
+            onClick={() => nextFight()}
+            variant="contained"
+            sx={{ margin: "0.25em 0.25em" }}
+          >
             Rösta igen
           </Button>
         </Grid>

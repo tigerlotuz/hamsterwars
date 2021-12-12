@@ -14,7 +14,7 @@ const Start = () => {
     );
 
   return (
-    <Grid container justifyContent="center" spacing={2}>
+    <Grid container justifyContent="center">
       <Grid item xs={12} m={2}>
         <Typography variant="h2" mt={2} mb={2}>
           Hamster Wars
@@ -54,12 +54,10 @@ const Start = () => {
               {hamster[0].name}
             </Typography>
           </Grid>
-          <Grid item xs={12} mt={2} mb={2}>
+          <Grid item xs={12} mb={6}>
             <Typography variant="h6">
-              Tävlingen om vem som blir "Cutest Hamster" har startat..
-            </Typography>
-            <Typography variant="h6">
-              Gå till tävlingssidan för att rösta på din favorithamster!
+              Tävlingen om vem som blir "Cutest Hamster" har startat! Gå till
+              tävlingssidan för att rösta på din favorithamster!
             </Typography>
           </Grid>
           <Grid container justifyContent="center">
